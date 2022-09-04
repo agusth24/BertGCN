@@ -15,7 +15,7 @@ from scipy.spatial.distance import cosine
 if len(sys.argv) != 2:
 	sys.exit("Use: python build_graph.py <dataset>")
 
-datasets = ['20ng', 'R8', 'R52', 'ohsumed', 'mr']
+datasets = ['20ng', 'R8', 'R52', 'ohsumed', 'mr', 'kontan1', 'kontan2']
 # build corpus
 dataset = sys.argv[1]
 
@@ -61,7 +61,7 @@ train_ids = []
 for train_name in doc_train_list:
     train_id = doc_name_list.index(train_name)
     train_ids.append(train_id)
-print(train_ids)
+# print(train_ids)
 random.shuffle(train_ids)
 
 # partial labeled data
@@ -76,7 +76,7 @@ test_ids = []
 for test_name in doc_test_list:
     test_id = doc_name_list.index(test_name)
     test_ids.append(test_id)
-print(test_ids)
+# print(test_ids)
 random.shuffle(test_ids)
 
 test_ids_str = '\n'.join(str(index) for index in test_ids)
@@ -85,8 +85,8 @@ f.write(test_ids_str)
 f.close()
 
 ids = train_ids + test_ids
-print(ids)
-print(len(ids))
+# print(ids)
+print('ids:', len(ids))
 
 shuffle_doc_name_list = []
 shuffle_doc_words_list = []
