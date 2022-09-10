@@ -73,6 +73,8 @@ nb_train, nb_val, nb_test = train_mask.sum(), val_mask.sum(), test_mask.sum()
 nb_word = nb_node - nb_train - nb_val - nb_test
 nb_class = y_train.shape[1]
 
+print(f'nb_node: {nb_node}; nb_train: {nb_train}; nb_val: {nb_val}; nb_test: {nb_test}; nb_word: {nb_word}; nb_class: {nb_class};')
+exit()
 # instantiate model according to class number
 model = BertClassifier(pretrained_model=bert_init, nb_class=nb_class)
 

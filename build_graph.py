@@ -268,7 +268,7 @@ for i in range(real_train_size):
     one_hot[label_index] = 1
     y.append(one_hot)
 y = np.array(y)
-print(y)
+# print(y)
 
 # tx: feature vectors of test docs, no initial features
 test_size = len(test_ids)
@@ -306,7 +306,7 @@ for i in range(test_size):
     one_hot[label_index] = 1
     ty.append(one_hot)
 ty = np.array(ty)
-print(ty)
+# print(ty)
 
 # allx: the the feature vectors of both labeled and unlabeled training instances
 # (a superset of x)
@@ -370,12 +370,18 @@ for i in range(vocab_size):
 
 ally = np.array(ally)
 
-print(x.shape, y.shape, tx.shape, ty.shape, allx.shape, ally.shape)
+print(f'x train (train - validation): {x.shape}')
+print(f'y train (train - validation): {y.shape}')
+print(f'x train: {tx.shape}')
+print(f'y train: {ty.shape}')
+print(f'x vocab train: {allx.shape}')
+print(f'y vocab train: {ally.shape}')
 
 '''
 Doc word heterogeneous graph
 '''
 
+# Point-wise Mutual Information (PMI)
 # word co-occurence with context windows
 window_size = 20
 windows = []
@@ -465,6 +471,7 @@ for i in range(vocab_size):
                 col.append(train_size + j)
                 weight.append(similarity)
 '''
+# TF-IDF
 # doc word frequency
 doc_word_freq = {}
 
@@ -503,6 +510,8 @@ node_size = train_size + vocab_size + test_size
 adj = sp.csr_matrix(
     (weight, (row, col)), shape=(node_size, node_size))
 
+print(adj)
+print('adj shape: ',adj.shape)
 # dump objects
 f = open("data/ind.{}.x".format(dataset), 'wb')
 pkl.dump(x, f)
